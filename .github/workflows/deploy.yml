@@ -36,7 +36,7 @@ jobs:
         run: npm ci --legacy-peer-deps
 
       - name: 🏗 Build Angular App
-        run: npm run build -- --configuration production --base-href /pagination/
+        run: npm run build -- --configuration production --base-href /MyF1Manager/
 
       - name: 🧪 (Optional) List Artifacts for Debug
         run: ls -R dist
