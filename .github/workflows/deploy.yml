@@ -45,12 +45,12 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: angular-build
-          path: dist/pagination/browser
+          path: dist\demo\browser
 
       - name: 🚀 Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist/pagination/browser
+          path: dist\demo\browser
 
   deploy:
     needs: build-and-deploy
