@@ -36,6 +36,19 @@ All data is fetched from the [ERGAST F1 API](https://ergast.com/mrd/):
 
 Example:
 ```http
-GET https://ergast.com/api/f1/current/driverStandings.json:
+GET https://ergast.com/api/f1/current/driverStandings.json: 
+
+```
+
+## 📄 Documentation
+
+- [Deployment Guide](docs/deployment.md)
+- [API Integration Notes](docs/api-guide.md)
+- [Developer Setup](docs/developer-guide.md)
+
+## 🔗 Live Demo
+
+👉 **[Click here to view the live demo]([https://your-deployment-link.com](https://sdshaik.github.io/MyF1Manager))**
+
 
 
