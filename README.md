@@ -48,7 +48,7 @@ GET https://ergast.com/api/f1/current/driverStandings.json:
 
 ## 🔗 Live Demo
 
-👉 **[Click here to view the live demo]([https://your-deployment-link.com](https://sdshaik.github.io/MyF1Manager))**
+👉  **[Click here to view the live demo](https://sdshaik.github.io/MyF1Manager)**
 
 
 
