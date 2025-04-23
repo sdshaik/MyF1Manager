@@ -1,0 +1,148 @@
+.recent-result-card {
+    padding: 1.5rem;
+  }
+  
+  .race-header {
+    margin-bottom: 1.5rem;
+  }
+  
+  .race-title h3 {
+    color: var(--f1-red);
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .race-details {
+    color: var(--f1-dark-gray);
+    font-size: 1rem;
+  }
+  
+  .winners-podium {
+    margin-bottom: 1.5rem;
+  }
+  
+  .podium-position {
+    background-color: var(--f1-light-gray);
+    border-radius: 8px;
+    padding: 1.5rem;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .position-1 {
+    background-color: rgba(255, 215, 0, 0.15); /* gold tint */
+    border-left: 4px solid gold;
+  }
+  
+  .position-2 {
+    background-color: rgba(100, 148, 250, 0.15); /* silver tint */
+    border-left: 4px solid silver;
+  }
+  
+  .position-3 {
+    background-color: rgba(205, 127, 50, 0.15); /* bronze tint */
+    border-left: 4px solid #cd7f32;
+  }
+  
+  .position-number {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 2rem;
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.1);
+  }
+  
+  .driver-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--f1-blue);
+    text-decoration: none;
+    display: block;
+    margin-bottom: 0.5rem;
+    transition: color 0.2s;
+  }
+  
+  .driver-name:hover {
+    color: var(--f1-red);
+  }
+  
+  .last-name {
+    text-transform: uppercase;
+  }
+  
+  .team-name {
+    font-size: 1rem;
+    color: var(--f1-medium-gray);
+    margin-bottom: 0.5rem;
+  }
+  
+  .finishing-time {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--f1-blue);
+  }
+  
+  .results-footer {
+    display: flex;
+    justify-content: center;
+  }
+  
+  @media (max-width: 768px) {
+    .podium-position {
+      margin-bottom: 1rem;
+    }
+  }
+
+  .podium-row {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 1rem;
+    margin-top: 1rem;
+    text-align: center;
+  }
+  
+  .podium-slot {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .podium-card {
+    background: #f1f1f1;
+    padding: 1rem;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    transition: all 0.3s ease;
+  }
+  
+  /* Default: smallest height */
+  .podium-slot.position-2 .podium-card,
+  .podium-slot.position-3 .podium-card {
+    height: 170px;
+  }
+  
+  .podium-slot.position-1 {
+    order: 0; /* Ensures it's in the middle */
+  }
+  
+  .podium-slot.position-2 {
+    order: -1; /* Moves to the left */
+  }
+  
+  .podium-slot.position-3 {
+    order: 1; /* Moves to the right */
+  }
+  
+  /* Tallest for 1st place */
+  .podium-slot.position-1 .podium-card {
+    height: 210px;
+    background: #ffd700; /* Optional gold background for 1st */
+  }
+  

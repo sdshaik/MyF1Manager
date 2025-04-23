@@ -1,0 +1,91 @@
+.page-header {
+    padding: 3rem 0;
+    margin-top: -1.0rem;
+    position: relative;
+  }
+  
+  .page-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background-color: var(--f1-red);
+  }
+  
+  .filters-container {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .form-label {
+    font-weight: 600;
+    color: var(--f1-blue);
+    margin-bottom: 0.5rem;
+  }
+  
+  .driver-card {
+    position: relative;
+    padding: 1.5rem;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .driver-number {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: rgba(0, 14, 47, 0.1);
+  }
+  
+  .driver-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .driver-link {
+    color: var(--f1-blue);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  
+  .driver-link:hover {
+    color: var(--f1-red);
+  }
+  
+  .last-name {
+    text-transform: uppercase;
+  }
+  
+  .driver-details {
+    margin-bottom: 1.5rem;
+  }
+  
+  .detail-item {
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .detail-label {
+    font-size: 0.85rem;
+    color: var(--f1-medium-gray);
+  }
+  
+  .detail-value {
+    font-weight: 600;
+    color: var(--f1-blue);
+  }
+  
+  .driver-actions {
+    display: flex;
+    justify-content: flex-start;
+  }

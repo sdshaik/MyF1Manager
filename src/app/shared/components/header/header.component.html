@@ -1,0 +1,48 @@
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-f1-blue">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center" routerLink="/">
+          <span class="ms-2 fw-bold">F1 MANAGER</span>
+        </a>
+        <button 
+          class="navbar-toggler" 
+          type="button" 
+          (click)="isMenuCollapsed = !isMenuCollapsed" 
+          aria-controls="navbarNav" 
+          [attr.aria-expanded]="!isMenuCollapsed" 
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div 
+          class="collapse navbar-collapse" 
+          [class.show]="!isMenuCollapsed" 
+          id="navbarNav"
+        >
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/schedule" routerLinkActive="active">Schedule</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/results" routerLinkActive="active">Results</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/drivers" routerLinkActive="active">Drivers</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/teams" routerLinkActive="active">Teams</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/standings" routerLinkActive="active">Standings</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/live" routerLinkActive="active">Live Timing</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>

@@ -1,0 +1,70 @@
+<div class="page-transition">
+    <div class="home-header mb-4">
+      <div class="container">
+        <h1 class="text-white mb-3">F1 MANAGER</h1>
+        <p class="text-white mb-0">Your real-time Formula 1 data dashboard</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <section class="mb-5">
+        <h2 class="section-title mb-4">Next Race</h2>
+        
+        <div *ngIf="isLoadingRaces; else raceContent">
+          <app-loading-spinner [message]="'Loading next race...'"></app-loading-spinner>
+        </div>
+        
+        <ng-template #raceContent>
+          <div *ngIf="nextRace; else noRaceContent">
+            <app-next-race-card [race]="nextRace"></app-next-race-card>
+          </div>
+          
+          <ng-template #noRaceContent>
+            <app-error-message [message]="raceError || 'No upcoming races found.'"></app-error-message>
+          </ng-template>
+        </ng-template>
+      </section>
+      <section class="mb-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h2 class="section-title mb-0">Driver Standings</h2>
+          <a routerLink="/standings" class="btn f1-btn f1-btn-primary">View All</a>
+        </div>
+
+        <div *ngIf="isLoadingDrivers; else driversContent">
+          <app-loading-spinner [message]="'Loading driver standings...'"></app-loading-spinner>
+        </div>
+        
+        <ng-template #driversContent>
+          <div *ngIf="topDrivers.length > 0; else noDriversContent" class="row">
+            <div *ngFor="let driver of topDrivers" class="col-md-4 mb-4">
+              <app-driver-standing-card [driver]="driver"></app-driver-standing-card>
+            </div>
+          </div>
+          
+          <ng-template #noDriversContent>
+            <app-error-message [message]="driversError || 'No driver standings available.'"></app-error-message>
+          </ng-template>
+        </ng-template>
+      </section>
+      <section class="mb-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h2 class="section-title mb-0">Recent Results</h2>
+          <a routerLink="/results" class="btn f1-btn f1-btn-primary">View All</a>
+        </div>
+
+        <div *ngIf="isLoadingResults; else resultsContent">
+          <app-loading-spinner [message]="'Loading recent results...'"></app-loading-spinner>
+        </div>
+        
+        <ng-template #resultsContent>
+          <div *ngIf="recentResult; else noResultsContent">
+            <app-recent-result-card [result]="recentResult"></app-recent-result-card>
+          </div>
+          
+          <ng-template #noResultsContent>
+            <app-error-message [message]="resultsError || 'No recent race results available.'"></app-error-message>
+          </ng-template>
+        </ng-template>
+      </section>
+    </div>
+  </div>

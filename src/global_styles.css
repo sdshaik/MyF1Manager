@@ -1,0 +1,168 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+:root {
+  --f1-red: #E10600;
+  --f1-blue: #000e2f;
+  --f1-light-blue: #3671C6;
+  --f1-black: #15151E;
+  --f1-dark-gray: #36344D;
+  --f1-medium-gray: #6F6E8C;
+  --f1-light-gray: #F0F0F5;
+  --f1-white: #FFFFFF;
+
+  --color-success: #27A64A;
+  --color-warning: #FFA121;
+  --color-error: #E10600;
+  
+
+  --space-1: 0.5rem; 
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-5: 2.5rem;
+  --space-6: 3rem;
+}
+
+body {
+  font-family: 'Titillium Web', 'Roboto', sans-serif;
+  color: var(--f1-black);
+  background-color: var(--f1-light-gray);
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Formula1', 'Titillium Web', sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: var(--space-2);
+}
+
+.bg-f1-red {
+  background-color: var(--f1-red);
+}
+
+.bg-f1-blue {
+  background-color: var(--f1-blue);
+}
+
+.text-f1-red {
+  color: var(--f1-red);
+}
+
+.text-f1-blue {
+  color: var(--f1-blue);
+}
+
+.f1-card {
+  background-color: var(--f1-white);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.f1-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.f1-btn {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-radius: 4px;
+  padding: 0.5rem 1.5rem;
+  transition: all 0.2s;
+}
+
+.f1-btn-primary {
+  background-color: var(--f1-red);
+  border-color: var(--f1-red);
+  color: var(--f1-white);
+}
+
+.f1-btn-primary:hover {
+  background-color: #c10600;
+  border-color: #c10600;
+}
+
+.f1-btn-secondary {
+  background-color: var(--f1-blue);
+  border-color: var(--f1-blue);
+  color: var(--f1-white);
+}
+
+.f1-btn-secondary:hover {
+  background-color: #00091f;
+  border-color: #00091f;
+}
+
+.f1-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(225, 6, 0, 0.2);
+  border-top-color: var(--f1-red);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 576px) {
+  .f1-card {
+    margin-bottom: var(--space-2);
+  }
+}
+
+
+.page-transition {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.nav-link.active {
+  color: var(--f1-red) !important;
+  font-weight: 600;
+}
+
+
+.f1-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.f1-table th {
+  background-color: var(--f1-blue);
+  color: var(--f1-white);
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: var(--space-1) var(--space-2);
+}
+
+.f1-table td {
+  padding: var(--space-1) var(--space-2);
+  border-bottom: 1px solid var(--f1-light-gray);
+}
+
+.f1-table tr:hover {
+  background-color: rgba(240, 240, 245, 0.5);
+}

@@ -1,0 +1,98 @@
+.driver-card {
+    position: relative;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .position-indicator {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    font-size: 1.2rem;
+  }
+  
+  .position-1 {
+    background-color: gold;
+    color: black;
+  }
+  
+  .position-2 {
+    background-color: silver;
+    color: black;
+  }
+  
+  .position-3 {
+    background-color: #cd7f32; /* bronze */
+  }
+  
+  .position-other {
+    background-color: var(--f1-blue);
+  }
+  
+  .driver-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  
+  .driver-link {
+    color: var(--f1-blue);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  
+  .driver-link:hover {
+    color: var(--f1-red);
+  }
+  
+  .last-name {
+    text-transform: uppercase;
+  }
+  
+  .team-name {
+    font-weight: 600;
+    color: var(--f1-blue);
+  }
+  
+  .driver-nationality {
+    color: var(--f1-medium-gray);
+    font-size: 0.9rem;
+  }
+  
+  .driver-stats {
+    display: flex;
+    margin-top: auto;
+  }
+  
+  .stat-item {
+    background-color: var(--f1-light-gray);
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 1rem;
+    min-width: 80px;
+  }
+  
+  .stat-label {
+    font-size: 0.85rem;
+    color: var(--f1-medium-gray);
+    margin-bottom: 0.25rem;
+  }
+  
+  .stat-value {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--f1-blue);
+  }

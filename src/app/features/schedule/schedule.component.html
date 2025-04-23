@@ -1,0 +1,118 @@
+<div class="page-transition">
+    <div class="page-header bg-f1-blue text-white mb-4">
+      <div class="container">
+        <h1 class="mb-2">Race Calendar</h1>
+        <p class="mb-0">Formula 1 Race Schedule for {{ selectedSeason }}</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="filters-container mb-4">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="seasonSelect" class="form-label">Season</label>
+              <select 
+                id="seasonSelect" 
+                class="form-control" 
+                [(ngModel)]="selectedSeason" 
+                (change)="loadSchedule()"
+              >
+                <option *ngFor="let year of availableYears" [value]="year">{{ year }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="filterSelect" class="form-label">Filter</label>
+              <select 
+                id="filterSelect" 
+                class="form-control" 
+                [(ngModel)]="selectedFilter" 
+                (change)="applyFilter()"
+              >
+                <option value="all">All Races</option>
+                <option value="upcoming">Upcoming Races</option>
+                <option value="past">Past Races</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="isLoading; else scheduleContent">
+        <app-loading-spinner [message]="'Loading race schedule...'"></app-loading-spinner>
+      </div>
+      
+      <ng-template #scheduleContent>
+        <div *ngIf="error" class="mb-4">
+          <app-error-message [message]="error"></app-error-message>
+        </div>
+        
+        <div *ngIf="!error && filteredRaces.length === 0" class="text-center my-5">
+          <h4>No races found for the selected filter</h4>
+        </div>
+
+        <div *ngIf="filteredRaces.length > 0" class="race-schedule">
+          <div *ngFor="let race of filteredRaces" class="f1-card race-card mb-4">
+            <div class="row g-0">
+              <div class="col-md-2 race-number-container d-flex flex-column justify-content-center align-items-center">
+                <div class="race-number">{{ race.round }}</div>
+                <div class="race-flag">{{ race.Circuit.Location.country }}</div>
+              </div>
+              <div class="col-md-7 race-details-container p-3">
+                <h3 class="race-name">{{ race.raceName }}</h3>
+                <div class="circuit-name">{{ race.Circuit.circuitName }}</div>
+                
+                <div class="race-dates mt-3">
+                  <div class="race-dates-header">Race Weekend</div>
+                  <div class="dates-container">
+                    <div class="date-item" *ngIf="race.FirstPractice">
+                      <div class="date-name">Practice 1</div>
+                      <div class="date-value">{{ formatDate(race.FirstPractice.date) }}</div>
+                    </div>
+                    <div class="date-item" *ngIf="race.SecondPractice">
+                      <div class="date-name">Practice 2</div>
+                      <div class="date-value">{{ formatDate(race.SecondPractice.date) }}</div>
+                    </div>
+                    <div class="date-item" *ngIf="race.ThirdPractice">
+                      <div class="date-name">Practice 3</div>
+                      <div class="date-value">{{ formatDate(race.ThirdPractice.date) }}</div>
+                    </div>
+                    <div class="date-item" *ngIf="race.Qualifying">
+                      <div class="date-name">Qualifying</div>
+                      <div class="date-value">{{ formatDate(race.Qualifying.date) }}</div>
+                    </div>
+                    <div class="date-item" *ngIf="race.Sprint">
+                      <div class="date-name">Sprint</div>
+                      <div class="date-value">{{ formatDate(race.Sprint.date) }}</div>
+                    </div>
+                    <div class="date-item race-day">
+                      <div class="date-name">Race</div>
+                      <div class="date-value">{{ formatDate(race.date) }}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3 race-status-container p-3">
+                <div [ngClass]="getRaceStatusClass(race)">
+                  {{ getRaceStatus(race) }}
+                </div>
+                
+                <div class="race-date">
+                  <div class="date">{{ formatFullDate(race.date) }}</div>
+                  <div class="time">{{ formatTime(race.time) }}</div>
+                </div>
+                
+                <div class="race-links mt-3">
+                  <a *ngIf="isPastRace(race)" [routerLink]="['/results']" [queryParams]="{season: race.season, round: race.round}" class="btn f1-btn f1-btn-secondary btn-sm">
+                    View Results
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </div>

@@ -1,0 +1,150 @@
+.next-race-card {
+    padding: 2rem;
+  }
+  
+  .race-name {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--f1-red);
+    margin-bottom: 0.5rem;
+  }
+  
+  .race-location {
+    font-size: 1.1rem;
+    color: var(--f1-dark-gray);
+  }
+  
+  .location-divider {
+    color: var(--f1-medium-gray);
+  }
+  
+  .race-date-time {
+    display: flex;
+    margin-top: 1.5rem;
+  }
+  
+  .date-block, .time-block {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .date-label, .time-label {
+    font-size: 0.9rem;
+    color: var(--f1-medium-gray);
+    margin-bottom: 0.25rem;
+  }
+  
+  .date-value, .time-value {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--f1-blue);
+  }
+  
+  .sessions-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--f1-blue);
+  }
+  
+  .sessions-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+  
+  .session-item {
+    display: flex;
+    flex-direction: column;
+    padding: 0.75rem;
+    background-color: var(--f1-light-gray);
+    border-radius: 8px;
+  }
+  
+  .session-name {
+    font-weight: 600;
+    color: var(--f1-blue);
+    margin-bottom: 0.25rem;
+  }
+  
+  .session-date, .session-time {
+    font-size: 0.9rem;
+    color: var(--f1-dark-gray);
+  }
+  
+  .circuit-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .circuit-placeholder {
+    background-color: var(--f1-light-gray);
+    height: 250px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .flag-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--f1-blue);
+    color: white;
+    padding: 0.5rem;
+    text-align: center;
+  }
+  
+  .country-name {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .circuit-name-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 14, 47, 0.8);
+    color: white;
+    padding: 0.75rem;
+    text-align: center;
+    font-weight: 600;
+  }
+  
+  .circuit-info {
+    background-color: var(--f1-light-gray);
+    padding: 1rem;
+    border-radius: 8px;
+  }
+  
+  .info-label {
+    font-size: 0.9rem;
+    color: var(--f1-medium-gray);
+  }
+  
+  .info-value {
+    font-weight: 600;
+    color: var(--f1-blue);
+  }
+  
+  @media (max-width: 768px) {
+    .circuit-placeholder {
+      height: 200px;
+      margin-top: 2rem;
+    }
+    
+    .race-date-time {
+      flex-direction: column;
+    }
+    
+    .time-block {
+      margin-left: 0 !important;
+      margin-top: 1rem;
+    }
+  }

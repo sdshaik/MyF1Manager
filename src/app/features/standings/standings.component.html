@@ -1,0 +1,138 @@
+<div class="page-transition">
+    <div class="page-header bg-f1-blue text-white mb-4">
+      <div class="container">
+        <h1 class="mb-2">Championship Standings</h1>
+        <p class="mb-0">Formula 1 Driver and Constructor Standings for {{ selectedSeason }}</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="filters-container mb-4">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="seasonSelect" class="form-label">Season</label>
+              <select 
+                id="seasonSelect" 
+                class="form-control" 
+                [(ngModel)]="selectedSeason" 
+                (change)="loadStandings()"
+              >
+                <option *ngFor="let year of availableYears" [value]="year">{{ year }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="standingTypeSelect" class="form-label">Standings Type</label>
+              <select 
+                id="standingTypeSelect" 
+                class="form-control" 
+                [(ngModel)]="selectedStandingType" 
+                (change)="toggleStandingType()"
+              >
+                <option value="drivers">Drivers</option>
+                <option value="constructors">Constructors</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Drivers Standings -->
+      <div *ngIf="selectedStandingType === 'drivers'">
+        <div *ngIf="isLoadingDrivers; else driversContent">
+          <app-loading-spinner [message]="'Loading driver standings...'"></app-loading-spinner>
+        </div>
+        
+        <ng-template #driversContent>
+          <div *ngIf="driversError" class="mb-4">
+            <app-error-message [message]="driversError"></app-error-message>
+          </div>
+          
+          <div *ngIf="!driversError && driverStandings.length === 0" class="text-center my-5">
+            <h4>No driver standings available for {{ selectedSeason }}</h4>
+          </div>
+
+          <div *ngIf="driverStandings.length > 0" class="f1-card">
+            <table class="f1-table w-100">
+              <thead>
+                <tr>
+                  <th>Pos</th>
+                  <th>Driver</th>
+                  <th>Nationality</th>
+                  <th>Car</th>
+                  <th class="text-center">Wins</th>
+                  <th class="text-end">Points</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let driver of driverStandings">
+                  <td>{{ driver.position }}</td>
+                  <td>
+                    <a [routerLink]="['/drivers', driver.Driver.driverId]" class="driver-link">
+                      {{ driver.Driver.givenName }} <span class="text-uppercase fw-bold">{{ driver.Driver.familyName }}</span>
+                    </a>
+                  </td>
+                  <td>{{ driver.Driver.nationality }}</td>
+                  <td>
+                    <a *ngIf="driver.Constructors && driver.Constructors.length > 0" 
+                       [routerLink]="['/teams', driver.Constructors[0].constructorId]"
+                       class="team-link">
+                      {{ driver.Constructors[0].name }}
+                    </a>
+                  </td>
+                  <td class="text-center">{{ driver.wins }}</td>
+                  <td class="text-end fw-bold">{{ driver.points }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </ng-template>
+      </div>
+
+      <!-- Constructors Standings -->
+      <div *ngIf="selectedStandingType === 'constructors'">
+        <div *ngIf="isLoadingConstructors; else constructorsContent">
+          <app-loading-spinner [message]="'Loading constructor standings...'"></app-loading-spinner>
+        </div>
+        
+        <ng-template #constructorsContent>
+          <div *ngIf="constructorsError" class="mb-4">
+            <app-error-message [message]="constructorsError"></app-error-message>
+          </div>
+          
+          <div *ngIf="!constructorsError && constructorStandings.length === 0" class="text-center my-5">
+            <h4>No constructor standings available for {{ selectedSeason }}</h4>
+          </div>
+
+          <div *ngIf="constructorStandings.length > 0" class="f1-card">
+            <table class="f1-table w-100">
+              <thead>
+                <tr>
+                  <th>Pos</th>
+                  <th>Team</th>
+                  <th>Nationality</th>
+                  <th class="text-center">Wins</th>
+                  <th class="text-end">Points</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let constructor of constructorStandings">
+                  <td>{{ constructor.position }}</td>
+                  <td>
+                    <a [routerLink]="['/teams', constructor.Constructor.constructorId]" class="team-link">
+                      {{ constructor.Constructor.name }}
+                    </a>
+                  </td>
+                  <td>{{ constructor.Constructor.nationality }}</td>
+                  <td class="text-center">{{ constructor.wins }}</td>
+                  <td class="text-end fw-bold">{{ constructor.points }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>

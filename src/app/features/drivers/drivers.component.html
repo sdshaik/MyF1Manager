@@ -1,0 +1,94 @@
+<div class="page-transition">
+    <div class="page-header bg-f1-blue text-white mb-4">
+      <div class="container">
+        <h1 class="mb-2">F1 Drivers</h1>
+        <p class="mb-0">Formula 1 Drivers for {{ selectedSeason }}</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="filters-container mb-4">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="seasonSelect" class="form-label">Season</label>
+              <select 
+                id="seasonSelect" 
+                class="form-control" 
+                [(ngModel)]="selectedSeason" 
+                (change)="loadDrivers()"
+              >
+                <option *ngFor="let year of availableYears" [value]="year">{{ year }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div class="form-group">
+              <label for="searchInput" class="form-label">Search</label>
+              <input 
+                type="text" 
+                id="searchInput" 
+                class="form-control" 
+                placeholder="Search by name or nationality..."
+                [(ngModel)]="searchTerm"
+                (input)="filterDrivers()"
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="isLoading; else driversContent">
+        <app-loading-spinner [message]="'Loading drivers...'"></app-loading-spinner>
+      </div>
+      
+      <ng-template #driversContent>
+        <div *ngIf="error" class="mb-4">
+          <app-error-message [message]="error"></app-error-message>
+        </div>
+        
+        <div *ngIf="!error && filteredDrivers.length === 0" class="text-center my-5">
+          <h4>No drivers found for the selected criteria</h4>
+        </div>
+
+        <div *ngIf="filteredDrivers.length > 0" class="row">
+          <div *ngFor="let driver of filteredDrivers" class="col-md-4 mb-4">
+            <div class="f1-card driver-card">
+              <div class="driver-number">
+                {{ driver.permanentNumber || 'N/A' }}
+              </div>
+              
+              <div class="driver-info">
+                <h3 class="driver-name">
+                  <a [routerLink]="['/drivers', driver.driverId]" class="driver-link">
+                    {{ driver.givenName }} <span class="last-name">{{ driver.familyName }}</span>
+                  </a>
+                </h3>
+                
+                <div class="driver-details">
+                  <div class="detail-item">
+                    <span class="detail-label">Nationality</span>
+                    <span class="detail-value">{{ driver.nationality }}</span>
+                  </div>
+                  <div class="detail-item">
+                    <span class="detail-label">Code</span>
+                    <span class="detail-value">{{ driver.code || 'N/A' }}</span>
+                  </div>
+                  <div class="detail-item">
+                    <span class="detail-label">Date of Birth</span>
+                    <span class="detail-value">{{ formatDate(driver.dateOfBirth) }}</span>
+                  </div>
+                </div>
+                
+                <div class="driver-actions mt-3">
+                  <a [routerLink]="['/drivers', driver.driverId]" class="btn f1-btn f1-btn-primary btn-sm">
+                    View Profile
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </div>

@@ -1,0 +1,35 @@
+.home-header {
+    background-color: var(--f1-blue);
+    padding: 3rem 0;
+    margin-top: -1.0rem;
+    position: relative;
+  }
+  
+  .home-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background-color: var(--f1-red);
+  }
+  
+  .section-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--f1-blue);
+    position: relative;
+    padding-left: 0.75rem;
+  }
+  
+  .section-title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.25rem;
+    bottom: 0.25rem;
+    width: 4px;
+    background-color: var(--f1-red);
+    border-radius: 2px;
+  }

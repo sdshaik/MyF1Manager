@@ -1,0 +1,150 @@
+<div class="page-transition">
+    <div class="page-header bg-f1-blue text-white mb-4">
+      <div class="container">
+        <h1 class="mb-2">Race Results</h1>
+        <p class="mb-0">Formula 1 Race Results</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="filters-container mb-4">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="seasonSelect" class="form-label">Season</label>
+              <select 
+                id="seasonSelect" 
+                class="form-control" 
+                [(ngModel)]="selectedSeason" 
+                (change)="onSeasonChange()"
+              >
+                <option *ngFor="let year of availableYears" [value]="year">{{ year }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="roundSelect" class="form-label">Race</label>
+              <select 
+                id="roundSelect" 
+                class="form-control" 
+                [(ngModel)]="selectedRound" 
+                (change)="loadResults()"
+                [disabled]="isLoadingRaces"
+              >
+                <option *ngFor="let race of races" [value]="race.round">{{ race.raceName }}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="isLoadingResults; else resultsContent">
+        <app-loading-spinner [message]="'Loading race results...'"></app-loading-spinner>
+      </div>
+      
+      <ng-template #resultsContent>
+        <div *ngIf="error" class="mb-4">
+          <app-error-message [message]="error"></app-error-message>
+        </div>
+        
+        <div *ngIf="!error && raceResult">
+          <div class="result-header mb-4">
+            <h2>{{ raceResult.raceName }} {{ raceResult.season }}</h2>
+            <div class="circuit-info">
+              <span>{{ raceResult.Circuit.circuitName }}</span>
+              <span class="mx-2">|</span>
+              <span>{{ formatDate(raceResult.date) }}</span>
+            </div>
+          </div>
+          
+          <div class="f1-card mb-4">
+            <div class="table-responsive">
+              <table class="f1-table">
+                <thead>
+                  <tr>
+                    <th>Pos</th>
+                    <th>Driver</th>
+                    <th>Team</th>
+                    <th class="text-center">Grid</th>
+                    <th class="text-center">Laps</th>
+                    <th>Time/Retired</th>
+                    <th class="text-end">Points</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let result of raceResult.Results">
+                    <td>{{ result.position }}</td>
+                    <td>
+                      <a [routerLink]="['/drivers', result.Driver.driverId]" class="driver-link">
+                        {{ result.Driver.givenName }} <span class="text-uppercase fw-bold">{{ result.Driver.familyName }}</span>
+                      </a>
+                    </td>
+                    <td>
+                      <a [routerLink]="['/teams', result.Constructor.constructorId]" class="team-link">
+                        {{ result.Constructor.name }}
+                      </a>
+                    </td>
+                    <td class="text-center">{{ result.grid }}</td>
+                    <td class="text-center">{{ result.laps }}</td>
+                    <td>
+                      <span *ngIf="result.Time; else statusBlock">{{ result.Time.time }}</span>
+                      <ng-template #statusBlock>
+                        <span class="status-text">{{ result.status }}</span>
+                      </ng-template>
+                    </td>
+                    <td class="text-end fw-bold">{{ result.points }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          
+          <div class="fastest-laps mb-4" *ngIf="hasFastestLaps()">
+            <h3 class="section-title mb-3">Fastest Laps</h3>
+            
+            <div class="f1-card">
+              <div class="table-responsive">
+                <table class="f1-table">
+                  <thead>
+                    <tr>
+                      <th>Rank</th>
+                      <th>Driver</th>
+                      <th>Team</th>
+                      <th class="text-center">Lap</th>
+                      <th class="text-center">Time</th>
+                      <th class="text-end">Avg Speed</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let result of getFastestLapsResults()">
+                      <td>{{ result.FastestLap?.rank }}</td>
+                      <td>
+                        <a [routerLink]="['/drivers', result.Driver.driverId]" class="driver-link">
+                          {{ result.Driver.givenName }} <span class="text-uppercase fw-bold">{{ result.Driver.familyName }}</span>
+                        </a>
+                      </td>
+                      <td>
+                        <a [routerLink]="['/teams', result.Constructor.constructorId]" class="team-link">
+                          {{ result.Constructor.name }}
+                        </a>
+                      </td>
+                      <td class="text-center">
+{{ result.FastestLap?.lap || 'N/A' }}
+</td>
+<td class="text-center">
+{{ result.FastestLap?.Time?.time || 'N/A' }}
+</td>
+<td class="text-end">
+{{ result.FastestLap?.AverageSpeed?.speed || 'N/A' }} {{ result.FastestLap?.AverageSpeed?.units || 'N/A' }}
+</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </div>

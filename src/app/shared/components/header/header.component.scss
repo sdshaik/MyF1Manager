@@ -1,0 +1,30 @@
+.navbar-brand {
+    font-family: 'Formula1', 'Titillium Web', sans-serif;
+    letter-spacing: 1px;
+  }
+  
+  .navbar-brand span {
+    color: white;
+    font-size: 1.25rem;
+  }
+  
+  .nav-link {
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    transition: color 0.2s;
+  }
+
+  .nav-link:hover {
+    color: var(--f1-red) !important;
+  }
+  
+  @media (max-width: 991px) {
+    .navbar-collapse {
+      padding: 1rem 0;
+    }
+    
+    .nav-item {
+      margin-bottom: 0.5rem;
+    }
+  }

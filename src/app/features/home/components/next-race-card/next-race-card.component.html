@@ -1,0 +1,82 @@
+<div class="f1-card next-race-card">
+    <div class="card-race-info">
+      <div class="row">
+        <div class="col-md-7">
+          <h3 class="race-name">{{ race.raceName }}</h3>
+          <div class="race-location">
+            <span>{{ race.Circuit.circuitName }}</span>
+            <span class="location-divider mx-2">|</span>
+            <span>{{ race.Circuit.Location.country }}</span>
+          </div>
+          
+          <div class="race-date-time mt-3">
+            <div class="date-block">
+              <span class="date-label">Race Date</span>
+              <span class="date-value">{{ formatDate(race.date) }}</span>
+            </div>
+            <div class="time-block ms-4">
+              <span class="time-label">Race Time</span>
+              <span class="time-value">{{ formatTime(race.time) }}</span>
+            </div>
+          </div>
+          
+          <div class="race-sessions mt-4">
+            <h5 class="sessions-title mb-3">Race Weekend Schedule</h5>
+            <div class="sessions-container">
+              <div class="session-item" *ngIf="race.FirstPractice">
+                <span class="session-name">Practice 1</span>
+                <span class="session-date">{{ formatDate(race.FirstPractice.date) }}</span>
+                <span class="session-time">{{ formatTime(race.FirstPractice.time) }}</span>
+              </div>
+              <div class="session-item" *ngIf="race.SecondPractice">
+                <span class="session-name">Practice 2</span>
+                <span class="session-date">{{ formatDate(race.SecondPractice.date) }}</span>
+                <span class="session-time">{{ formatTime(race.SecondPractice.time) }}</span>
+              </div>
+              <div class="session-item" *ngIf="race.ThirdPractice">
+                <span class="session-name">Practice 3</span>
+                <span class="session-date">{{ formatDate(race.ThirdPractice.date) }}</span>
+                <span class="session-time">{{ formatTime(race.ThirdPractice.time) }}</span>
+              </div>
+              <div class="session-item" *ngIf="race.Qualifying">
+                <span class="session-name">Qualifying</span>
+                <span class="session-date">{{ formatDate(race.Qualifying.date) }}</span>
+                <span class="session-time">{{ formatTime(race.Qualifying.time) }}</span>
+              </div>
+              <div class="session-item" *ngIf="race.Sprint">
+                <span class="session-name">Sprint</span>
+                <span class="session-date">{{ formatDate(race.Sprint.date) }}</span>
+                <span class="session-time">{{ formatTime(race.Sprint.time) }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-5">
+          <div class="circuit-container">
+            <div class="circuit-placeholder">
+              <div class="flag-container">
+                <span class="country-name">{{ race.Circuit.Location.country }}</span>
+              </div>
+              <div class="circuit-name-overlay">{{ race.Circuit.circuitName }}</div>
+            </div>
+            
+            <div class="circuit-info mt-3">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="info-label">Round</span>
+                <span class="info-value">{{ race.round }}</span>
+              </div>
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="info-label">Season</span>
+                <span class="info-value">{{ race.season }}</span>
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="info-label">Location</span>
+                <span class="info-value">{{ race.Circuit.Location.locality }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

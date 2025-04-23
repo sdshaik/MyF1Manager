@@ -1,0 +1,31 @@
+<div class="f1-card driver-card">
+    <div class="position-indicator" [ngClass]="getPositionClass()">
+      {{ driver.position }}
+    </div>
+    
+    <div class="driver-details">
+      <div class="driver-name">
+        <a [routerLink]="['/drivers', driver.Driver.driverId]" class="driver-link">
+          {{ driver.Driver.givenName }} <span class="last-name">{{ driver.Driver.familyName }} - {{driver.Driver.permanentNumber}}</span>
+        </a>
+      </div>
+      
+      <div class="driver-info">
+        <div class="team-name" *ngIf="driver.Constructors && driver.Constructors.length > 0">
+          {{ driver.Constructors[0].name }}
+        </div>
+        <div class="driver-nationality">{{ driver.Driver.nationality }}</div>
+      </div>
+      
+      <div class="driver-stats mt-3">
+        <div class="stat-item">
+          <span class="stat-label">Points</span>
+          <span class="stat-value">{{ driver.points }}</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Wins</span>
+          <span class="stat-value">{{ driver.wins }}</span>
+        </div>
+      </div>
+    </div>
+  </div>

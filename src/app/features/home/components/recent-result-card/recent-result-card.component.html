@@ -1,0 +1,66 @@
+<div class="f1-card recent-result-card">
+    <div class="race-header">
+      <div class="race-title">
+        <h3>{{ result.raceName }}</h3>
+        <div class="race-details">
+          <span>{{ result.Circuit.circuitName }}</span>
+          <span class="mx-2">|</span>
+          <span>{{ formatDate(result.date) }}</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="podium-row">
+        <!-- Position 2: Left -->
+        <div class="podium-slot position-2" *ngIf="getPodiumPosition('2') as second">
+          <div class="podium-card">
+            <div class="position-number">{{ second.position }}</div>
+            <div class="driver-details">
+                <h2>  2  </h2>
+              <a [routerLink]="['/drivers', second.Driver.driverId]" class="driver-name">
+                {{ second.Driver.givenName }} <span class="last-name">{{ second.Driver.familyName }}</span>
+              </a>
+              <div class="team-name" *ngIf="second.Constructor">{{ second.Constructor.name }}</div>
+              <div class="finishing-time" *ngIf="second.Time">{{ second.Time.time }}</div>
+            </div>
+          </div>
+        </div>
+      
+        <!-- Position 1: Center -->
+        <div class="podium-slot position-1" *ngIf="getPodiumPosition('1') as first">
+          <div class="podium-card">
+            <div class="position-number">{{ first.position }}</div>
+            <div class="driver-details">
+                <h1> 1 <i class="bi bi-trophy"></i> </h1>
+              <a [routerLink]="['/drivers', first.Driver.driverId]" class="driver-name">
+                {{ first.Driver.givenName }} <span class="last-name">{{ first.Driver.familyName }}</span>
+              </a>
+              <div class="team-name" *ngIf="first.Constructor">{{ first.Constructor.name }}</div>
+              <div class="finishing-time" *ngIf="first.Time">{{ first.Time.time }}</div>
+            </div>
+          </div>
+        </div>
+      
+        <!-- Position 3: Right -->
+        <div class="podium-slot position-3" *ngIf="getPodiumPosition('3') as third">
+          <div class="podium-card">
+            <div class="position-number">{{ third.position }}</div>
+            <div class="driver-details">
+                <h3>  3  </h3>
+              <a [routerLink]="['/drivers', third.Driver.driverId]" class="driver-name">
+                {{ third.Driver.givenName }} <span class="last-name">{{ third.Driver.familyName }}</span>
+              </a>
+              <div class="team-name" *ngIf="third.Constructor">{{ third.Constructor.name }}</div>
+              <div class="finishing-time" *ngIf="third.Time">{{ third.Time.time }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    
+    <div class="results-footer mt-4">
+      <a [routerLink]="['/results']" [queryParams]="{season: result.season, round: result.round}" class="btn f1-btn f1-btn-secondary">
+        See Full Results
+      </a>
+    </div>
+  </div>

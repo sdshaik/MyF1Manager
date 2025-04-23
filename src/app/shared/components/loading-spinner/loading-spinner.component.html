@@ -1,0 +1,11 @@
+<div class="d-flex justify-content-center align-items-center p-5">
+    <div 
+      class="f1-spinner" 
+      [ngStyle]="{
+        'width': size + 'px', 
+        'height': size + 'px',
+        'border-width': size / 10 + 'px'
+      }"
+    ></div>
+    <span class="ms-3 text-muted" *ngIf="message">{{ message }}</span>
+  </div>

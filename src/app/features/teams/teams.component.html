@@ -1,0 +1,85 @@
+<div class="page-transition">
+    <div class="page-header bg-f1-blue text-white mb-4">
+      <div class="container">
+        <h1 class="mb-2">F1 Teams</h1>
+        <p class="mb-0">Formula 1 Constructors for {{ selectedSeason }}</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="filters-container mb-4">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="seasonSelect" class="form-label">Season</label>
+              <select 
+                id="seasonSelect" 
+                class="form-control" 
+                [(ngModel)]="selectedSeason" 
+                (change)="loadConstructors()"
+              >
+                <option *ngFor="let year of availableYears" [value]="year">{{ year }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div class="form-group">
+              <label for="searchInput" class="form-label">Search</label>
+              <input 
+                type="text" 
+                id="searchInput" 
+                class="form-control" 
+                placeholder="Search by team name or nationality..."
+                [(ngModel)]="searchTerm"
+                (input)="filterConstructors()"
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="isLoading; else constructorsContent">
+        <app-loading-spinner [message]="'Loading teams...'"></app-loading-spinner>
+      </div>
+      
+      <ng-template #constructorsContent>
+        <div *ngIf="error" class="mb-4">
+          <app-error-message [message]="error"></app-error-message>
+        </div>
+        
+        <div *ngIf="!error && filteredConstructors.length === 0" class="text-center my-5">
+          <h4>No teams found for the selected criteria</h4>
+        </div>
+
+        <div *ngIf="filteredConstructors.length > 0" class="row">
+          <div *ngFor="let constructor of filteredConstructors" class="col-md-6 mb-4">
+            <div class="f1-card team-card">
+              <div class="team-info">
+                <h3 class="team-name">
+                  <a [routerLink]="['/teams', constructor.constructorId]" class="team-link">
+                    {{ constructor.name }}
+                  </a>
+                </h3>
+                
+                <div class="team-details">
+                  <div class="detail-item">
+                    <span class="detail-label">Nationality</span>
+                    <span class="detail-value">{{ constructor.nationality }}</span>
+                  </div>
+                </div>
+                
+                <div class="team-actions mt-3">
+                  <a [routerLink]="['/teams', constructor.constructorId]" class="btn f1-btn f1-btn-primary btn-sm">
+                    Team Profile
+                  </a>
+                  <a [href]="constructor.url" target="_blank" class="btn f1-btn f1-btn-secondary btn-sm ms-2">
+                    Wikipedia
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </div>

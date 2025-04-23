@@ -1,0 +1,166 @@
+.page-header {
+    padding: 3rem 0;
+    margin-top: -1.0rem;
+    position: relative;
+  }
+  
+  .page-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background-color: var(--f1-red);
+  }
+  
+  .filters-container {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .form-label {
+    font-weight: 600;
+    color: var(--f1-blue);
+    margin-bottom: 0.5rem;
+  }
+  
+  .race-card {
+    overflow: hidden;
+    transition: transform 0.2s;
+  }
+  
+  .race-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .race-number-container {
+    background-color: var(--f1-blue);
+    color: white;
+    padding: 1.5rem;
+  }
+  
+  .race-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+  }
+  
+  .race-flag {
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+  }
+  
+  .race-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--f1-red);
+    margin-bottom: 0.5rem;
+  }
+  
+  .circuit-name {
+    color: var(--f1-dark-gray);
+    font-size: 1.1rem;
+  }
+  
+  .race-dates-header {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--f1-blue);
+  }
+  
+  .dates-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .date-item {
+    padding: 0.5rem 0.75rem;
+    background-color: var(--f1-light-gray);
+    border-radius: 4px;
+    min-width: 120px;
+  }
+  
+  .race-day {
+    background-color: var(--f1-red);
+    color: white;
+  }
+  
+  .date-name {
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+  
+  .date-value {
+    font-size: 0.9rem;
+  }
+  
+  .race-status-container {
+    background-color: var(--f1-light-gray);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .race-status {
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .status-upcoming {
+    background-color: var(--f1-light-blue);
+    color: white;
+  }
+  
+  .status-completed {
+    background-color: var(--color-success);
+    color: white;
+  }
+  
+  .status-next-race {
+    background-color: var(--f1-red);
+    color: white;
+  }
+  
+  .race-date {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .date {
+    font-weight: 600;
+    color: var(--f1-blue);
+  }
+  
+  .time {
+    font-size: 0.9rem;
+    color: var(--f1-dark-gray);
+  }
+  
+  .race-links {
+    display: flex;
+    justify-content: center;
+  }
+  
+  @media (max-width: 768px) {
+    .race-number-container {
+      padding: 1rem;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    
+    .dates-container {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .date-item {
+      min-width: auto;
+    }
+  }

@@ -1,0 +1,118 @@
+<div class="page-transition">
+    <div *ngIf="isLoadingDriver; else driverContent">
+      <div class="container py-5">
+        <app-loading-spinner [message]="'Loading driver details...'"></app-loading-spinner>
+      </div>
+    </div>
+    
+    <ng-template #driverContent>
+      <div *ngIf="error" class="container py-5">
+        <app-error-message [message]="error"></app-error-message>
+        <div class="mt-4">
+          <a routerLink="/drivers" class="btn f1-btn f1-btn-primary">Back to Drivers</a>
+        </div>
+      </div>
+      
+      <div *ngIf="!error && driver">
+        <div class="driver-header bg-f1-blue text-white mb-4">
+          <div class="container">
+            <div class="d-flex align-items-center mb-3">
+              <a routerLink="/drivers" class="text-white me-3 back-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                </svg>
+              </a>
+              <h1 class="mb-0">{{ driver.givenName }} <span class="text-uppercase">{{ driver.familyName }}</span></h1>
+            </div>
+            <div class="driver-code" *ngIf="driver.code">{{ driver.code }}</div>
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="row mb-5">
+            <div class="col-md-4 mb-4 mb-md-0">
+              <div class="f1-card h-100">
+                <h3 class="card-title">Driver Info</h3>
+                
+                <div class="info-item">
+                  <div class="info-label">Full Name</div>
+                  <div class="info-value">{{ driver.givenName }} {{ driver.familyName }}</div>
+                </div>
+                
+                <div class="info-item">
+                  <div class="info-label">Nationality</div>
+                  <div class="info-value">{{ driver.nationality }}</div>
+                </div>
+                
+                <div class="info-item">
+                  <div class="info-label">Date of Birth</div>
+                  <div class="info-value">{{ formatDate(driver.dateOfBirth) }}</div>
+                </div>
+                
+                <div class="info-item">
+                  <div class="info-label">Driver Number</div>
+                  <div class="info-value">{{ driver.permanentNumber || 'N/A' }}</div>
+                </div>
+                
+                <div class="info-item">
+                  <div class="info-label">Code</div>
+                  <div class="info-value">{{ driver.code || 'N/A' }}</div>
+                </div>
+                
+                <div class="mt-4">
+                  <a [href]="driver.url" target="_blank" class="btn f1-btn f1-btn-secondary">Wikipedia Profile</a>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-md-8">
+              <div class="f1-card recent-results">
+                <h3 class="card-title">Recent Results</h3>
+                
+                <div *ngIf="isLoadingResults; else resultsContent">
+                  <app-loading-spinner [message]="'Loading results...'"></app-loading-spinner>
+                </div>
+                
+                <ng-template #resultsContent>
+                  <div *ngIf="resultsError" class="mb-4">
+                    <app-error-message [message]="resultsError"></app-error-message>
+                  </div>
+                  
+                  <div *ngIf="!resultsError && driverResults.length === 0" class="text-center my-4">
+                    <p>No recent results available for this driver</p>
+                  </div>
+                  
+                  <div *ngIf="driverResults.length > 0">
+                    <div class="table-responsive">
+                      <table class="f1-table">
+                        <thead>
+                          <tr>
+                            <th>Date</th>
+                            <th>Grand Prix</th>
+                            <th>Team</th>
+                            <th class="text-center">Grid</th>
+                            <th class="text-center">Position</th>
+                            <th class="text-end">Points</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let result of driverResults">
+                            <td>{{ formatDate(result.date) }}</td>
+                            <td>{{ result.raceName }}</td>
+                            <td>{{ getConstructorName(result) }}</td>
+                            <td class="text-center">{{ getDriverGrid(result) }}</td>
+                            <td class="text-center">{{ getDriverPosition(result) }}</td>
+                            <td class="text-end fw-bold">{{ getDriverPoints(result) }}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </ng-template>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </div>
