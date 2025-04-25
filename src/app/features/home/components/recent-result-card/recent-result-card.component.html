@@ -16,7 +16,7 @@
           <div class="podium-card">
             <div class="position-number">{{ second.position }}</div>
             <div class="driver-details">
-                <h2>  2  </h2>
+                <h2>  2  <fa-icon [icon]="faAward"></fa-icon> </h2>
               <a [routerLink]="['/drivers', second.Driver.driverId]" class="driver-name">
                 {{ second.Driver.givenName }} <span class="last-name">{{ second.Driver.familyName }}</span>
               </a>
@@ -31,7 +31,7 @@
           <div class="podium-card">
             <div class="position-number">{{ first.position }}</div>
             <div class="driver-details">
-                <h1> 1 <i class="bi bi-trophy"></i> </h1>
+                <h1> 1 <fa-icon [icon]="faTrophy"></fa-icon> </h1>
               <a [routerLink]="['/drivers', first.Driver.driverId]" class="driver-name">
                 {{ first.Driver.givenName }} <span class="last-name">{{ first.Driver.familyName }}</span>
               </a>
@@ -46,7 +46,7 @@
           <div class="podium-card">
             <div class="position-number">{{ third.position }}</div>
             <div class="driver-details">
-                <h3>  3  </h3>
+                <h3>  3 <fa-icon [icon]="faAward"></fa-icon>  </h3>
               <a [routerLink]="['/drivers', third.Driver.driverId]" class="driver-name">
                 {{ third.Driver.givenName }} <span class="last-name">{{ third.Driver.familyName }}</span>
               </a>

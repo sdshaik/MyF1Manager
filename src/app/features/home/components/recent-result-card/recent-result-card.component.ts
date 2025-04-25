@@ -3,15 +3,21 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { RaceResult } from '@core/models/result.model';
 
+import { faTrophy, faAward } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 @Component({
   selector: 'app-recent-result-card',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, FontAwesomeModule],
   templateUrl: './recent-result-card.component.html',
   styleUrl: './recent-result-card.component.scss'
 })
 export class RecentResultCardComponent {
   @Input() result!: RaceResult;
+
+  faTrophy = faTrophy;
+  faAward = faAward;
 
   formatDate(dateStr: string): string {
     if (!dateStr) return '';
